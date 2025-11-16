@@ -125,8 +125,71 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  let numI = '';
+  const numIV = 'IV';
+  let numV = 'V';
+  const numIX = 'IX';
+  const numX = 'X';
+  let tens = '';
+  let tNum = '';
+  let units = '';
+  let uNum = '';
+  if (num <= 3) {
+    for (let i = 1; i <= num; i += 1) {
+      numI += 'I';
+    }
+    return numI;
+  }
+  if (num === 4) {
+    return numIV;
+  }
+  if (num === 5) {
+    return numV;
+  }
+  if (num > 5 && num <= 8) {
+    for (let i = 1; i <= num - 5; i += 1) {
+      numV += 'I';
+    }
+    return numV;
+  }
+  if (num === 9) {
+    return numIX;
+  }
+  if (num === 10) {
+    return numX;
+  }
+  if (num > 10) {
+    tens = Math.floor(num / 10);
+    units = num % 10;
+    if (tens <= 3) {
+      for (let i = 1; i <= tens; i += 1) {
+        tNum += 'X';
+      }
+    }
+    if (units <= 3) {
+      for (let i = 1; i <= units; i += 1) {
+        uNum += 'I';
+      }
+    }
+    if (units === 4) {
+      uNum = 'IV';
+    }
+    if (units === 5) {
+      uNum = 'V';
+    }
+    if (units > 5 && units <= 8) {
+      uNum = 'V';
+      for (let i = 1; i <= units - 5; i += 1) {
+        uNum += 'I';
+      }
+    }
+    if (units === 9) {
+      uNum = 'IX';
+    }
+    return tNum + uNum;
+  }
+  return false;
 }
 
 /**
